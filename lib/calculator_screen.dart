@@ -103,7 +103,61 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     );
   }
 
+  getColor(String text) {
+    if (text == '/' ||
+        text == '*' ||
+        text == '+' ||
+        text == '-' ||
+        text == 'C' ||
+        text == '(' ||
+        text == ')') {
+      return Colors.redAccent;
+    }
+    if (text == '=' || text == 'AC') {
+      return Colors.white;
+    }
+    return Colors.indigo;
+  }
+
+  getBgColor(String text) {
+    if (text == 'AC') {
+      return Colors.redAccent;
+    }
+    if (text == '=') {
+      return const Color.fromARGB(255, 104, 204, 159);
+    }
+    return Colors.white;
+  }
+
   Widget button(String text) {
-    return InkWell();
+    return InkWell(
+      onTap: () {
+        setState(() {
+          // handleButtonPress(text);
+        });
+      },
+      child: Container(
+        decoration: BoxDecoration(
+            color: getBgColor(text),
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.1),
+                blurRadius: 1,
+                spreadRadius: 1,
+              ),
+            ]),
+        child: Center(
+          child: Text(
+            text,
+            style: TextStyle(
+              color: getColor(text),
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
