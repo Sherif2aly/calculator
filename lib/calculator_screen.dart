@@ -41,7 +41,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
         body: Column(
           children: [
             Container(
-              height: MediaQuery.of(context).size.height / 2.79,
+              height: MediaQuery.of(context).size.height / 2.90,
               child: resultWidget(),
             ),
             Expanded(
@@ -133,7 +133,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     return InkWell(
       onTap: () {
         setState(() {
-          // handleButtonPress(text);
+          handleButtonPress(text);
         });
       },
       child: Container(
@@ -159,5 +159,33 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
         ),
       ),
     );
+  }
+
+  handleButtonPress(String text) {
+    if (text == 'AC') {
+      userInput = '';
+      result = '0';
+      return;
+    }
+    if (text == 'C') {
+      if (userInput.isNotEmpty) {
+        userInput = userInput.substring(0, userInput.length - 1);
+        return;
+      } else {
+        return null;
+      }
+    }
+    if (text == '=') {
+      // result = calculate();
+      userInput = result;
+      if (userInput.endsWith('.0')) {
+        userInput = userInput.replaceAll('.0', '');
+      }
+      if (result.endsWith('.0')) {
+        result = result.replaceAll('.0', '');
+      }
+      return;
+    }
+    userInput = userInput + text;
   }
 }
