@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:math_expressions/math_expressions.dart';
 
 class CalculatorScreen extends StatefulWidget {
   const CalculatorScreen({super.key});
@@ -189,5 +190,13 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     userInput = userInput + text;
   }
 
-  String calculate() {}
+  String calculate() {
+    try {
+      var exp = Parser().parse(userInput);
+      var eveluation = exp.evaluate(EvaluationType.REAL, ContextModel());
+      return eveluation.toString();
+    } catch (e) {
+      return 'Error';
+    }
+  }
 }
