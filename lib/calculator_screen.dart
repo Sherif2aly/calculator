@@ -176,7 +176,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
       }
     }
     if (text == '=') {
-      // result = calculate();
+      result = calculate();
       userInput = result;
       if (userInput.endsWith('.0')) {
         userInput = userInput.replaceAll('.0', '');
@@ -188,4 +188,6 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     }
     userInput = userInput + text;
   }
+
+  String calculate() {}
 }
