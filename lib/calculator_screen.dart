@@ -10,6 +10,30 @@ class CalculatorScreen extends StatefulWidget {
 class _CalculatorScreenState extends State<CalculatorScreen> {
   String userInput = '';
   String result = '0';
+
+  List<String> bottonList = [
+    'AC',
+    '(',
+    ')',
+    '/',
+    '7',
+    '8',
+    '9',
+    '*',
+    '4',
+    '5',
+    '6',
+    '+',
+    '1',
+    '2',
+    '3',
+    '-',
+    'C',
+    '0',
+    '.',
+    '=',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -20,9 +44,9 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
               height: MediaQuery.of(context).size.height / 2.79,
               child: resultWidget(),
             ),
-            // const Expanded(
-            //   child: BottonWidget(),
-            // ),
+            Expanded(
+              child: buttonWidget(),
+            ),
           ],
         ),
       ),
@@ -59,5 +83,27 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
         ],
       ),
     );
+  }
+
+  Widget buttonWidget() {
+    return Container(
+      padding: const EdgeInsets.all(10),
+      color: const Color.fromARGB(66, 233, 232, 232),
+      child: GridView.builder(
+        itemCount: bottonList.length,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 4,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+        ),
+        itemBuilder: (context, index) {
+          return button(bottonList[index]);
+        },
+      ),
+    );
+  }
+
+  Widget button(String text) {
+    return InkWell();
   }
 }
