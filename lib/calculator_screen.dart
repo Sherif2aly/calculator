@@ -28,4 +28,36 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
       ),
     );
   }
+
+  Widget resultWidget() {
+    return Container(
+      color: Colors.white,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(20),
+            alignment: Alignment.centerRight,
+            child: Text(
+              userInput,
+              style: const TextStyle(
+                fontSize: 32,
+              ),
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.all(10),
+            alignment: Alignment.centerRight,
+            child: Text(
+              result,
+              style: const TextStyle(
+                fontSize: 48,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
 }
